@@ -19,6 +19,7 @@ const Payment = ({ translations }: PaymentProps) => {
     cpf: "",
     phone: "",
     email: "",
+    password: "",
     cvv: "",
     cardNumber: "",
   });
@@ -106,6 +107,18 @@ const Payment = ({ translations }: PaymentProps) => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                    className="mt-2"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="password">{translations.payment.password}</Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     required
                     className="mt-2"
                   />

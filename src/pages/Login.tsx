@@ -14,6 +14,7 @@ const Login = ({ translations }: LoginProps) => {
     name: "",
     email: "",
     document: "",
+    password: "",
   });
 
   const [staffData, setStaffData] = useState({
@@ -75,6 +76,17 @@ const Login = ({ translations }: LoginProps) => {
                       id="client-document"
                       value={clientData.document}
                       onChange={(e) => setClientData({ ...clientData, document: e.target.value })}
+                      required
+                      className="mt-2"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="client-password">{translations.login.password}</Label>
+                    <Input
+                      id="client-password"
+                      type="password"
+                      value={clientData.password}
+                      onChange={(e) => setClientData({ ...clientData, password: e.target.value })}
                       required
                       className="mt-2"
                     />

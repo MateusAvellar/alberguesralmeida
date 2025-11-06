@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import room4BedsImage from "@/assets/room-4-beds.jpg";
-import room8BedsImage from "@/assets/room-8-beds.jpg";
-import room12BedsImage from "@/assets/room-12-beds.jpg";
+import room8BedsImage from "@/assets/room-8-beds-modern.jpg";
+import room8BedsSingleImage from "@/assets/room-8-beds-single.jpg";
+import room12BedsImage from "@/assets/room-12-beds-spacious.jpg";
 import roomAccessibleImage from "@/assets/room-accessible.jpg";
 
 interface RoomsProps {
@@ -64,9 +65,9 @@ const Rooms = ({ translations }: RoomsProps) => {
       name: "Quarto 8 Camas",
       beds: 8,
       price: 120,
-      image: room8BedsImage,
+      image: room8BedsSingleImage,
       available: false,
-      hasBathroom: true,
+      hasBathroom: false,
       accessible: false,
     },
     {

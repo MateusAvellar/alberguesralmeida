@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/arcos-lapa-hero.jpg";
+import heroImage from "@/assets/santa-teresa-tram-hero.jpg";
 
 interface HomeProps {
   translations: any;
