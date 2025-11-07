@@ -16,6 +16,8 @@ import Benefits from "./pages/Benefits";
 import Partners from "./pages/Partners";
 import Rooms from "./pages/Rooms";
 import Payment from "./pages/Payment";
+import PaymentConfirmation from "./pages/PaymentConfirmation";
+import Revenue from "./pages/Revenue";
 import PartnerPage from "./pages/PartnerPage";
 import NotFound from "./pages/NotFound";
 
@@ -42,6 +44,8 @@ const App = () => {
             <Route path="/partners" element={<Partners translations={t} />} />
             <Route path="/rooms" element={<Rooms translations={t} />} />
             <Route path="/payment" element={<Payment translations={t} />} />
+            <Route path="/payment-confirmation" element={<PaymentConfirmation translations={t} />} />
+            <Route path="/revenue" element={<Revenue translations={t} />} />
             <Route path="/partner/:partner" element={<PartnerPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

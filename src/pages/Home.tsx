@@ -1,14 +1,33 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/santa-teresa-tram-hero.jpg";
+import { useEffect, useState } from "react";
+import heroImageLight from "@/assets/santa-teresa-tram-hero.jpg";
+import heroImageDark from "@/assets/lapa-nightlife-hero.jpg";
+import cristoRedentorDark from "@/assets/cristo-redentor-dark.jpg";
 
 interface HomeProps {
   translations: any;
 }
 
 const Home = ({ translations }: HomeProps) => {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    
+    return () => observer.disconnect();
+  }, []);
+
+  const heroImage = isDark ? heroImageDark : heroImageLight;
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={isDark ? { backgroundImage: `url(${cristoRedentorDark})`, backgroundSize: 'cover', backgroundAttachment: 'fixed' } : {}}>
       <section
         className="relative h-[600px] flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
@@ -31,7 +50,13 @@ const Home = ({ translations }: HomeProps) => {
         </div>
       </section>
 
-      <section className="py-20 bg-muted">
+      <section className="py-20">
+        <footer className="py-6 text-center text-sm text-muted-foreground">
+          <p>Criado e desenvolvido por Mateus Mendes, Kayke Piccoli e Samuel Gonçalves</p>
+        </footer>
+      </section>
+
+      <section className="py-20 bg-muted/50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-card p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">

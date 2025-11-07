@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "./ThemeToggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -76,6 +77,8 @@ export const Navigation = ({ language, setLanguage, translations }: NavigationPr
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+
+            <ThemeToggle />
 
             <Button asChild variant="default" className="bg-primary hover:bg-primary/90 shadow-md">
               <Link to="/rooms">{translations.nav.reserve}</Link>

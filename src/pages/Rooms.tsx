@@ -54,7 +54,7 @@ const Rooms = ({ translations }: RoomsProps) => {
       id: 4,
       name: "Quarto 8 Camas",
       beds: 8,
-      price: 120,
+      price: 150,
       image: room8BedsImage,
       available: true,
       hasBathroom: true,
