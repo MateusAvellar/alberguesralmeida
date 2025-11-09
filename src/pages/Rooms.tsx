@@ -19,7 +19,7 @@ const Rooms = ({ translations }: RoomsProps) => {
   const rooms = [
     {
       id: 1,
-      name: "Quarto 4 Camas",
+      nameKey: "room4beds" as const,
       beds: 4,
       price: 100,
       image: room4BedsImage,
@@ -30,7 +30,7 @@ const Rooms = ({ translations }: RoomsProps) => {
     },
     {
       id: 2,
-      name: "Quarto 4 Camas",
+      nameKey: "room4beds" as const,
       beds: 4,
       price: 100,
       image: room4BedsImage,
@@ -41,7 +41,7 @@ const Rooms = ({ translations }: RoomsProps) => {
     },
     {
       id: 3,
-      name: "Quarto 4 Camas Acessível",
+      nameKey: "room4bedsAccessible" as const,
       beds: 4,
       price: 100,
       image: roomAccessibleImage,
@@ -52,7 +52,7 @@ const Rooms = ({ translations }: RoomsProps) => {
     },
     {
       id: 4,
-      name: "Quarto 8 Camas",
+      nameKey: "room8beds" as const,
       beds: 8,
       price: 150,
       image: room8BedsImage,
@@ -62,7 +62,7 @@ const Rooms = ({ translations }: RoomsProps) => {
     },
     {
       id: 5,
-      name: "Quarto 8 Camas",
+      nameKey: "room8beds" as const,
       beds: 8,
       price: 120,
       image: room8BedsSingleImage,
@@ -72,7 +72,7 @@ const Rooms = ({ translations }: RoomsProps) => {
     },
     {
       id: 6,
-      name: "Quarto 8 Camas Acessível",
+      nameKey: "room8bedsAccessible" as const,
       beds: 8,
       price: 120,
       image: roomAccessibleImage,
@@ -82,7 +82,7 @@ const Rooms = ({ translations }: RoomsProps) => {
     },
     {
       id: 7,
-      name: "Quarto 12 Camas",
+      nameKey: "room12beds" as const,
       beds: 12,
       price: 130,
       image: room12BedsImage,
@@ -92,7 +92,7 @@ const Rooms = ({ translations }: RoomsProps) => {
     },
     {
       id: 8,
-      name: "Quarto 12 Camas",
+      nameKey: "room12beds" as const,
       beds: 12,
       price: 130,
       image: room12BedsImage,
@@ -102,7 +102,7 @@ const Rooms = ({ translations }: RoomsProps) => {
     },
     {
       id: 9,
-      name: "Quarto 12 Camas",
+      nameKey: "room12beds" as const,
       beds: 12,
       price: 130,
       image: room12BedsImage,
@@ -131,7 +131,7 @@ const Rooms = ({ translations }: RoomsProps) => {
               className="bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all hover:scale-105"
             >
               <div className="relative">
-                <img src={room.image} alt={room.name} className="w-full h-48 object-cover" />
+                <img src={room.image} alt={translations.rooms[room.nameKey]} className="w-full h-48 object-cover" />
                 {room.promo && (
                   <Badge className="absolute top-2 right-2 bg-destructive text-destructive-foreground">
                     Promoção
@@ -139,7 +139,7 @@ const Rooms = ({ translations }: RoomsProps) => {
                 )}
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-foreground">{room.name}</h3>
+                <h3 className="text-xl font-bold mb-2 text-foreground">{translations.rooms[room.nameKey]}</h3>
                 <p className="text-muted-foreground mb-4">
                   {room.beds} {translations.rooms.beds}
                 </p>

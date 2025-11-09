@@ -51,7 +51,7 @@ const Home = ({ translations }: HomeProps) => {
       </section>
 
       <section className="py-20">
-        <footer className="py-6 text-center text-sm text-muted-foreground">
+        <footer className="py-6 px-4 text-left text-sm text-muted-foreground">
           <p>Criado e desenvolvido por Mateus Mendes, Kayke Piccoli e Samuel Gonçalves</p>
         </footer>
       </section>
