@@ -126,6 +126,7 @@ export const Navigation = ({ language, setLanguage, translations }: NavigationPr
                   {lang.flag}
                 </button>
               ))}
+              <ThemeToggle />
             </div>
             <Button asChild className="bg-primary hover:bg-primary/90 mt-2">
               <Link to="/rooms" onClick={() => setMobileMenuOpen(false)}>
