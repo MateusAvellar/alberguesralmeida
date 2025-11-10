@@ -114,7 +114,7 @@ const Rooms = ({ translations }: RoomsProps) => {
 
   const handleBooking = (roomId: number) => {
     setSelectedRoom(roomId);
-    navigate("/payment", { state: { roomId } });
+    navigate("/date-selection", { state: { roomId } });
   };
 
   return (

@@ -78,17 +78,17 @@ const Payment = ({ translations }: PaymentProps) => {
     setIsProcessing(true);
 
     try {
-      const roomData = location.state?.roomId || 1;
+      const { roomId, checkIn, checkOut, nights, totalPrice } = location.state || {};
       
       // Enviar email de confirmação
       const { error } = await supabase.functions.invoke("send-booking-confirmation", {
         body: {
           customerName: formData.name,
           customerEmail: formData.email,
-          roomName: `Quarto ${roomData}`,
-          checkIn: new Date().toLocaleDateString("pt-BR"),
-          checkOut: new Date(Date.now() + 86400000 * 3).toLocaleDateString("pt-BR"),
-          totalPrice: 300,
+          roomName: `Quarto ${roomId}`,
+          checkIn: checkIn ? new Date(checkIn).toLocaleDateString("pt-BR") : new Date().toLocaleDateString("pt-BR"),
+          checkOut: checkOut ? new Date(checkOut).toLocaleDateString("pt-BR") : new Date(Date.now() + 86400000 * 3).toLocaleDateString("pt-BR"),
+          totalPrice: totalPrice || 300,
           paymentMethod: paymentMethod === "pix" ? "PIX" : paymentMethod === "credit" ? "Crédito" : "Débito",
         },
       });
@@ -103,9 +103,12 @@ const Payment = ({ translations }: PaymentProps) => {
         navigate("/payment-confirmation", {
           state: {
             bookingData: {
-              roomName: `Quarto ${roomData}`,
-              totalPrice: 300,
+              roomName: `Quarto ${roomId}`,
+              totalPrice: totalPrice || 300,
               paymentMethod: paymentMethod === "pix" ? "PIX" : paymentMethod === "credit" ? "Crédito" : "Débito",
+              checkIn: checkIn ? new Date(checkIn).toLocaleDateString("pt-BR") : new Date().toLocaleDateString("pt-BR"),
+              checkOut: checkOut ? new Date(checkOut).toLocaleDateString("pt-BR") : new Date(Date.now() + 86400000 * 3).toLocaleDateString("pt-BR"),
+              nights: nights || 3,
             },
           },
         });
