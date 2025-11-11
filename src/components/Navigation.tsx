@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
+import { useCart } from "@/contexts/CartContext";
+import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,6 +21,7 @@ interface NavigationProps {
 
 export const Navigation = ({ language, setLanguage, translations }: NavigationProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { totalItems } = useCart();
 
   const navItems = [
     { href: "/about", label: translations.nav.about },
@@ -80,6 +83,17 @@ export const Navigation = ({ language, setLanguage, translations }: NavigationPr
 
             <ThemeToggle />
 
+            <Button asChild variant="ghost" size="icon" className="relative text-primary-foreground hover:text-primary">
+              <Link to="/cart">
+                <ShoppingCart className="h-5 w-5" />
+                {totalItems > 0 && (
+                  <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs">
+                    {totalItems}
+                  </Badge>
+                )}
+              </Link>
+            </Button>
+
             <Button asChild variant="default" className="bg-primary hover:bg-primary/90 shadow-md">
               <Link to="/rooms">{translations.nav.reserve}</Link>
             </Button>
@@ -128,7 +142,18 @@ export const Navigation = ({ language, setLanguage, translations }: NavigationPr
               ))}
               <ThemeToggle />
             </div>
-            <Button asChild className="bg-primary hover:bg-primary/90 mt-2">
+            <Button asChild variant="outline" className="relative">
+              <Link to="/cart" onClick={() => setMobileMenuOpen(false)}>
+                <ShoppingCart className="h-5 w-5 mr-2" />
+                {translations.nav.cart}
+                {totalItems > 0 && (
+                  <Badge className="ml-2">
+                    {totalItems}
+                  </Badge>
+                )}
+              </Link>
+            </Button>
+            <Button asChild className="bg-primary hover:bg-primary/90">
               <Link to="/rooms" onClick={() => setMobileMenuOpen(false)}>
                 {translations.nav.reserve}
               </Link>

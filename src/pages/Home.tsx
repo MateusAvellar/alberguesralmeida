@@ -6,6 +6,7 @@ import heroImageDark from "@/assets/lapa-nightlife-hero.jpg";
 import cristoRedentorDark from "@/assets/cristo-redentor-dark.jpg";
 import { DateSelector } from "@/components/DateSelector";
 import { AvailableRooms } from "@/components/AvailableRooms";
+import { useCart } from "@/contexts/CartContext";
 import { toast } from "sonner";
 
 interface HomeProps {
@@ -16,7 +17,7 @@ const Home = ({ translations }: HomeProps) => {
   const [isDark, setIsDark] = useState(false);
   const [checkIn, setCheckIn] = useState<Date>();
   const [checkOut, setCheckOut] = useState<Date>();
-  const [cart, setCart] = useState<Array<{ room: any; beds: number }>>([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const checkTheme = () => {
@@ -38,7 +39,7 @@ const Home = ({ translations }: HomeProps) => {
   };
 
   const handleAddToCart = (room: any, beds: number) => {
-    setCart([...cart, { room, beds }]);
+    addToCart(room, beds);
     toast.success(`${beds} cama(s) adicionada(s) ao carrinho!`);
   };
 

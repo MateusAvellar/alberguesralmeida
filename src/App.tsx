@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { PromoPopup } from "@/components/PromoPopup";
+import { CartProvider } from "@/contexts/CartContext";
 import { translations } from "@/lib/translations";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -20,6 +21,7 @@ import Payment from "./pages/Payment";
 import PaymentConfirmation from "./pages/PaymentConfirmation";
 import Revenue from "./pages/Revenue";
 import PartnerPage from "./pages/PartnerPage";
+import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,8 +36,9 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Navigation language={language} setLanguage={setLanguage} translations={t} />
-          <Routes>
+          <CartProvider>
+            <Navigation language={language} setLanguage={setLanguage} translations={t} />
+            <Routes>
             <Route path="/" element={<Home translations={t} />} />
             <Route path="/about" element={<About translations={t} />} />
             <Route path="/rules" element={<Rules translations={t} />} />
@@ -49,9 +52,11 @@ const App = () => {
             <Route path="/payment-confirmation" element={<PaymentConfirmation translations={t} />} />
             <Route path="/revenue" element={<Revenue translations={t} />} />
             <Route path="/partner/:partner" element={<PartnerPage />} />
+            <Route path="/cart" element={<Cart translations={t} />} />
             <Route path="*" element={<NotFound />} />
-          </Routes>
-          <PromoPopup translations={t} />
+            </Routes>
+            <PromoPopup translations={t} />
+          </CartProvider>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
