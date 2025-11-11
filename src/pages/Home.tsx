@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import heroImageLight from "@/assets/santa-teresa-tram-hero.jpg";
 import heroImageDark from "@/assets/lapa-nightlife-hero.jpg";
 import cristoRedentorDark from "@/assets/cristo-redentor-dark.jpg";
+import { DateSelector } from "@/components/DateSelector";
+import { AvailableRooms } from "@/components/AvailableRooms";
+import { toast } from "sonner";
 
 interface HomeProps {
   translations: any;
@@ -11,6 +14,9 @@ interface HomeProps {
 
 const Home = ({ translations }: HomeProps) => {
   const [isDark, setIsDark] = useState(false);
+  const [checkIn, setCheckIn] = useState<Date>();
+  const [checkOut, setCheckOut] = useState<Date>();
+  const [cart, setCart] = useState<Array<{ room: any; beds: number }>>([]);
 
   useEffect(() => {
     const checkTheme = () => {
@@ -26,6 +32,16 @@ const Home = ({ translations }: HomeProps) => {
 
   const heroImage = isDark ? heroImageDark : heroImageLight;
 
+  const handleDatesSelected = (newCheckIn: Date | undefined, newCheckOut: Date | undefined) => {
+    setCheckIn(newCheckIn);
+    setCheckOut(newCheckOut);
+  };
+
+  const handleAddToCart = (room: any, beds: number) => {
+    setCart([...cart, { room, beds }]);
+    toast.success(`${beds} cama(s) adicionada(s) ao carrinho!`);
+  };
+
   return (
     <div className="min-h-screen" style={isDark ? { backgroundImage: `url(${cristoRedentorDark})`, backgroundSize: 'cover', backgroundAttachment: 'fixed' } : {}}>
       <section
@@ -40,15 +56,50 @@ const Home = ({ translations }: HomeProps) => {
           <p className="text-xl md:text-2xl text-white/95 mb-8 animate-in fade-in slide-in-from-bottom-5 duration-700 delay-150">
             {translations.home.subtitle}
           </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-white text-primary hover:bg-white/90 shadow-2xl text-lg px-8 py-6 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-300"
-          >
-            <Link to="/rooms">{translations.home.cta}</Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-300">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="bg-white text-primary hover:bg-white/90 shadow-2xl text-lg px-8 py-6 border-2 border-white"
+            >
+              <Link to="#dates">{translations.home.selectDates}</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-primary hover:bg-white/90 shadow-2xl text-lg px-8 py-6"
+            >
+              <Link to="/rooms">{translations.home.cta}</Link>
+            </Button>
+          </div>
         </div>
       </section>
+
+      <section id="dates" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-primary">
+            {translations.home.selectDates}
+          </h2>
+          <DateSelector translations={translations} onDatesSelected={handleDatesSelected} />
+        </div>
+      </section>
+
+      {(checkIn && checkOut) && (
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-12 text-primary">
+              {translations.home.availableRooms}
+            </h2>
+            <AvailableRooms 
+              translations={translations} 
+              checkIn={checkIn} 
+              checkOut={checkOut}
+              onAddToCart={handleAddToCart}
+            />
+          </div>
+        </section>
+      )}
 
       <section className="py-20">
         <footer className="py-6 px-4 text-left text-sm text-muted-foreground">

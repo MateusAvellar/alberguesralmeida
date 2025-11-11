@@ -14,7 +14,124 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      beds: {
+        Row: {
+          bed_number: number
+          created_at: string
+          id: string
+          price: number
+          room_id: string
+          updated_at: string
+        }
+        Insert: {
+          bed_number: number
+          created_at?: string
+          id?: string
+          price: number
+          room_id: string
+          updated_at?: string
+        }
+        Update: {
+          bed_number?: number
+          created_at?: string
+          id?: string
+          price?: number
+          room_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "beds_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: false
+            referencedRelation: "rooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bookings: {
+        Row: {
+          bed_id: string
+          check_in: string
+          check_out: string
+          created_at: string
+          guest_document: string
+          guest_email: string
+          guest_name: string
+          id: string
+          payment_status: string | null
+          total_price: number
+          updated_at: string
+        }
+        Insert: {
+          bed_id: string
+          check_in: string
+          check_out: string
+          created_at?: string
+          guest_document: string
+          guest_email: string
+          guest_name: string
+          id?: string
+          payment_status?: string | null
+          total_price: number
+          updated_at?: string
+        }
+        Update: {
+          bed_id?: string
+          check_in?: string
+          check_out?: string
+          created_at?: string
+          guest_document?: string
+          guest_email?: string
+          guest_name?: string
+          id?: string
+          payment_status?: string | null
+          total_price?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_bed_id_fkey"
+            columns: ["bed_id"]
+            isOneToOne: false
+            referencedRelation: "beds"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rooms: {
+        Row: {
+          base_price: number
+          bed_count: number
+          created_at: string
+          has_private_bathroom: boolean | null
+          id: string
+          is_accessible: boolean | null
+          room_number: number
+          updated_at: string
+        }
+        Insert: {
+          base_price: number
+          bed_count: number
+          created_at?: string
+          has_private_bathroom?: boolean | null
+          id?: string
+          is_accessible?: boolean | null
+          room_number: number
+          updated_at?: string
+        }
+        Update: {
+          base_price?: number
+          bed_count?: number
+          created_at?: string
+          has_private_bathroom?: boolean | null
+          id?: string
+          is_accessible?: boolean | null
+          room_number?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
