@@ -48,7 +48,7 @@ const Home = ({ translations }: HomeProps) => {
         className="relative h-[600px] flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/80" />
+        <div className="absolute inset-0 bg-primary/60" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
             {translations.home.title}
