@@ -56,21 +56,21 @@ const Home = ({ translations }: HomeProps) => {
           <p className="text-xl md:text-2xl text-white/95 mb-8 animate-in fade-in slide-in-from-bottom-5 duration-700 delay-150">
             {translations.home.subtitle}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-300">
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="bg-white text-primary hover:bg-white/90 shadow-2xl text-lg px-8 py-6 border-2 border-white"
-            >
-              <Link to="#dates">{translations.home.selectDates}</Link>
-            </Button>
+          <div className="flex flex-col gap-4 items-center animate-in fade-in slide-in-from-bottom-6 duration-700 delay-300">
             <Button
               asChild
               size="lg"
               className="bg-white text-primary hover:bg-white/90 shadow-2xl text-lg px-8 py-6"
             >
               <Link to="/rooms">{translations.home.cta}</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="bg-white text-primary hover:bg-white/90 shadow-2xl text-lg px-8 py-6 border-2 border-white"
+            >
+              <a href="#dates">{translations.home.selectDates}</a>
             </Button>
           </div>
         </div>
