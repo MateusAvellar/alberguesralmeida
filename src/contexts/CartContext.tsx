@@ -32,7 +32,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const totalItems = cart.reduce((sum, item) => sum + item.beds, 0);
-  const totalPrice = cart.reduce((sum, item) => sum + (item.room.price_per_bed * item.beds), 0);
+  const totalPrice = cart.reduce((sum, item) => sum + (item.room.base_price * item.beds), 0);
 
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, totalItems, totalPrice }}>

@@ -47,7 +47,7 @@ const Cart = ({ translations }: CartProps) => {
                         {item.beds} {item.beds === 1 ? translations.cart.bed : translations.cart.beds}
                       </p>
                       <p className="text-primary font-semibold">
-                        R$ {(item.room.price_per_bed * item.beds).toFixed(2)}
+                        R$ {(item.room.base_price * item.beds).toFixed(2)}
                       </p>
                     </div>
                     <Button
