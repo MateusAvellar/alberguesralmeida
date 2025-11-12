@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "sonner";
 import room4BedsImage from "@/assets/room-4-beds.jpg";
 import room8BedsImage from "@/assets/room-8-beds-modern.jpg";
 import room8BedsSingleImage from "@/assets/room-8-beds-single.jpg";
@@ -14,6 +16,7 @@ interface RoomsProps {
 
 const Rooms = ({ translations }: RoomsProps) => {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [selectedRoom, setSelectedRoom] = useState<number | null>(null);
 
   const rooms = [
@@ -112,9 +115,19 @@ const Rooms = ({ translations }: RoomsProps) => {
     },
   ];
 
-  const handleBooking = (roomId: number) => {
-    setSelectedRoom(roomId);
-    navigate("/date-selection", { state: { roomId } });
+  const handleAddToCart = (room: any) => {
+    // Converter dados estáticos para formato do carrinho
+    const roomData = {
+      id: room.id.toString(),
+      room_number: room.id,
+      bed_count: room.beds,
+      base_price: room.price,
+      has_private_bathroom: room.hasBathroom,
+      is_accessible: room.accessible,
+    };
+    
+    addToCart(roomData, 1);
+    toast.success(`1 cama adicionada ao carrinho!`);
   };
 
   return (
@@ -164,7 +177,7 @@ const Rooms = ({ translations }: RoomsProps) => {
                     <p className="text-sm text-muted-foreground">{translations.rooms.perBed}</p>
                   </div>
                   <Button
-                    onClick={() => handleBooking(room.id)}
+                    onClick={() => handleAddToCart(room)}
                     disabled={!room.available}
                     className={
                       room.available
