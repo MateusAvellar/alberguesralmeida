@@ -22,6 +22,7 @@ import PaymentConfirmation from "./pages/PaymentConfirmation";
 import Revenue from "./pages/Revenue";
 import PartnerPage from "./pages/PartnerPage";
 import Cart from "./pages/Cart";
+import Manager from "./pages/Manager";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -53,6 +54,7 @@ const App = () => {
             <Route path="/revenue" element={<Revenue translations={t} />} />
             <Route path="/partner/:partner" element={<PartnerPage />} />
             <Route path="/cart" element={<Cart translations={t} />} />
+            <Route path="/manager" element={<Manager translations={t} />} />
             <Route path="*" element={<NotFound />} />
             </Routes>
             <PromoPopup translations={t} />

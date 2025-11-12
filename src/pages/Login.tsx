@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
   translations: any;
@@ -27,9 +28,18 @@ const Login = ({ translations }: LoginProps) => {
     toast.success("Login realizado com sucesso!");
   };
 
+  const navigate = useNavigate();
+
   const handleStaffSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Login de funcionário realizado com sucesso!");
+    
+    // Verificar credenciais do gestor
+    if (staffData.name === "Mateus" && staffData.password === "mateus") {
+      toast.success("Login de gestor realizado com sucesso!");
+      navigate("/manager");
+    } else {
+      toast.error("Credenciais inválidas!");
+    }
   };
 
   return (
