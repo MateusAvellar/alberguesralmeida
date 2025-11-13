@@ -23,6 +23,11 @@ const Partners = ({ translations }: PartnersProps) => {
             <p className="text-lg text-muted-foreground mb-6">
               {translations.partners.tourismDesc}
             </p>
+            <div className="mb-4 p-3 bg-primary/10 rounded-lg border-2 border-primary/20">
+              <p className="text-sm text-muted-foreground mb-1">Cupom de Desconto</p>
+              <p className="text-xl font-bold text-primary">PARCEIROS20</p>
+              <p className="text-xs text-muted-foreground mt-1">20% de desconto</p>
+            </div>
             <Button asChild className="w-full bg-primary hover:bg-primary/90">
               <a href="/partner/turistar" target="_blank" rel="noopener noreferrer">
                 Ver mais
@@ -40,6 +45,11 @@ const Partners = ({ translations }: PartnersProps) => {
             <p className="text-lg text-muted-foreground mb-6">
               {translations.partners.transferDesc}
             </p>
+            <div className="mb-4 p-3 bg-secondary/10 rounded-lg border-2 border-secondary/20">
+              <p className="text-sm text-muted-foreground mb-1">Cupom de Desconto</p>
+              <p className="text-xl font-bold text-secondary">PARCEIROS20</p>
+              <p className="text-xs text-muted-foreground mt-1">20% de desconto</p>
+            </div>
             <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
               <a href="/partner/transfer" target="_blank" rel="noopener noreferrer">
                 Ver mais
