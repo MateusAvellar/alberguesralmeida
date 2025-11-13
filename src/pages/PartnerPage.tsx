@@ -11,7 +11,7 @@ const PartnerPage = () => {
       email: "contato@turistar.com",
       phone: "+55 21 3333-4444",
       website: "www.turistar.com",
-      coupon: null,
+      coupon: "PARCEIROS20",
     },
     transfer: {
       name: "Transfer",
@@ -19,7 +19,7 @@ const PartnerPage = () => {
       email: "contato@transfer.com",
       phone: "+55 21 5555-6666",
       website: "www.transfer.com",
-      coupon: null,
+      coupon: "PARCEIROS20",
     },
     "comida-de-casa": {
       name: "Comida de Casa",
